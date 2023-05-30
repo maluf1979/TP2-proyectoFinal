@@ -21,7 +21,7 @@ Usuario.init({
         allowNull: false
     },
     dni:{
-        type: DT.FLOAT,
+        type: DT.BIGINT(8) ,
         allowNull: false
     }
     

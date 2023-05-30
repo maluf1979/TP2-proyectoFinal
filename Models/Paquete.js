@@ -21,11 +21,11 @@ Paquete.init({
         allowNull: false
     },
     cantidadDias:{
-        type: DT.FLOAT,
+        type: DT.INTEGER,
         allowNull: false
     },
     valor:{
-        type: DT.FLOAT,
+        type: DT.FLOAT(10, 2),
         allowNull: false
     }
 
