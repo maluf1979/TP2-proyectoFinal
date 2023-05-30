@@ -6,7 +6,23 @@ class Usuario extends Model{}
 Usuario.init({
     userName:{
         type: DT.STRING,
-        allowNull:false
+        allowNull: false
+    },
+    password:{
+        type: DT.STRING,
+        allowNull: false
+    },
+    nombre:{
+        type: DT.STRING,
+        allowNull: false
+    },
+    apellido:{
+        type: DT.STRING,
+        allowNull: false
+    },
+    dni:{
+        type: DT.FLOAT,
+        allowNull: false
     }
     
 },{
