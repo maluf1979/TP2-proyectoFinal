@@ -6,11 +6,18 @@ class Usuario extends Model{}
 Usuario.init({
     userName:{
         type: DT.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true,
+        validate:{
+            len: [4, 25]
+        }
     },
     password:{
         type: DT.STRING,
-        allowNull: false
+        allowNull: false,
+        validate:{
+            len: [4, 20]
+        }
     },
     nombre:{
         type: DT.STRING,
@@ -22,12 +29,16 @@ Usuario.init({
     },
     dni:{
         type: DT.BIGINT(8) ,
-        allowNull: false
+        allowNull: false,
+        validate:{
+            len: [8]
+        }
     }
     
 },{
     sequelize: coneccionDb,
-    modelName:"Usuario"
+    modelName:"Usuario",
+    timestamps:false
 })
 
 export default Usuario

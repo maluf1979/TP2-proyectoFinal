@@ -1,11 +1,18 @@
 import express from "express";
 import router from "./routes/routes.js";
 import coneccionDb from "./connecctionDb/coneccionDb.js";
+import cors from "cors";
 
 const app = express();
+const port = process.env.SERVER_PORT;
+
+app.use(cors())
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(router);
 
-const port = process.env.SERVER_PORT;
+
 
 await coneccionDb.sync({ force: false }).then(() => {
   app.listen(port, () => {

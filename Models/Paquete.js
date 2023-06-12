@@ -8,7 +8,7 @@ Paquete.init({
         type: DT.STRING,
         allowNull: false
     },
-    medioTrasporte:{
+    medioTransporte:{
         type: DT.STRING,
         allowNull: false
     },
@@ -31,7 +31,8 @@ Paquete.init({
 
 },{
     sequelize: coneccionDb,
-    modelName: "Paquete"
+    modelName: "Paquete",
+    timestamps:false
 
 })
 
