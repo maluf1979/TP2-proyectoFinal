@@ -1,25 +1,18 @@
+import PaqueteController from "../Controllers/PaquetesController.js"
 import express from "express"
+
+const paquetesController = new PaqueteController();
 
 const router = express.Router()
 
-router.get("/", (req, res) =>{
-    res.send("get all paquetes andando")
-})
+router.get("/", paquetesController.getAllPaquetes)
 
-router.get("/:id", (req, res) =>{
-    res.send("get paquete por id")
-})
+router.get("/:id", paquetesController.getPaqueteById)
 
-router.post("/", (req, res) =>{
-    res.send("creacion de paquete")
-})
+router.post("/", paquetesController.createPaquetes)
 
-router.put("/:id", (req,res) =>{
-    res.send("modificacion de paquete")
-})
+router.put("/:id", paquetesController.updatePaqueteById)
 
-router.delete("/:id", (req,res) =>{
-    res.send("eliminacion de paquete")
-})
+router.delete("/:id", paquetesController.deletePaqueteById)
 
 export default router
