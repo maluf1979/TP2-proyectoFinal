@@ -14,7 +14,7 @@ app.use(router);
 
 
 
-await coneccionDb.sync({ force: false }).then(() => {
+await coneccionDb.sync({ force: true }).then(() => {
   app.listen(port, () => {
     console.log("server con express ok http://localhost:8080");
   });

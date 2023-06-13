@@ -4,6 +4,11 @@ import coneccionDb from "../connecctionDb/coneccionDb.js";
 class Paquete extends Model {}
 
 Paquete.init({
+    paqueteId: {
+        type: DT.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
     destino:{
         type: DT.STRING,
         allowNull: false
