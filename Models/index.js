@@ -6,9 +6,7 @@ import UsuarioPaquete from "./UsuarioPaquete.js";
 
 //relacion de Role con Usuario
 Role.hasMany(Usuario,{
-    foreignKey:{
-        name:"roleId"
-    }
+    foreignKey:"id"
 })
 Usuario.belongsTo(Role,{
     foreignKey:{
@@ -20,7 +18,7 @@ Usuario.belongsTo(Role,{
 //falta poner algun ON DELETE CASCADE ON UPDATE CASCADE
 Usuario.hasMany(UsuarioPaquete,{
     foreignKey:{
-        name:"usuarioId"
+        name:"id"
     }
 })
 UsuarioPaquete.belongsTo(Usuario,{
@@ -33,7 +31,7 @@ UsuarioPaquete.belongsTo(Usuario,{
 //relacion entre Paquete con UsuarioPaquete
 Paquete.hasMany(UsuarioPaquete,{
     foreignKey:{
-        name:"paqueteId"
+        name:"id"
     }
 })
 UsuarioPaquete.belongsTo(Paquete,{

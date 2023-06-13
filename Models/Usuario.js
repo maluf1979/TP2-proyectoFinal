@@ -9,18 +9,12 @@ class Usuario extends Model{
 }
 
 Usuario.init({
-    usuarioId: {
-        type: DT.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
     userName:{
         type: DT.STRING,
         allowNull: false,
         unique: true,
         validate:{
             len: [4, 25],
-            isEmail:true
         }
     },
     password:{

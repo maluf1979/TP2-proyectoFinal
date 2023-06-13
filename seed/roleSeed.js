@@ -1,4 +1,4 @@
-import {Role} from "../Models/Role.js"
+import {Role} from "../Models/index.js"
 
 const roleSeed = async () => {
     try {
@@ -11,4 +11,4 @@ const roleSeed = async () => {
     }
 };
 
-export default {roleSeed}
+export default roleSeed
