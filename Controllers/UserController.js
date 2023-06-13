@@ -1,12 +1,13 @@
-import { Usuario } from "../Models/index.js";
+import { where } from "sequelize";
+import { Usuario, Role } from "../Models/index.js";
 
 class UserController {
   constructor() {}
 
   createUser = async (req, res, next) => {
     try {
-      const { userName,nombre, dni, apellido, password } = req.body;
-      const result = await Usuario.create({ userName,nombre, dni, apellido, password });
+      const { userName,nombre, dni, apellido, password, role } = req.body;
+      const result = await Usuario.create({ userName,nombre, dni, apellido, password, role });
       if (!result.dataValues) throw new Error("No se pudo crear el usuario");
       res
         .status(200)
@@ -19,7 +20,11 @@ class UserController {
   getAllUsers = async (req, res, next) => {
     try {
       const result = await Usuario.findAll({
-        attributes:["id", "userName", "nombre", "apellido", "dni"]
+        attributes:["id", "userName", "nombre", "apellido", "dni"],
+        include : [{
+          model: Role,
+          attributes:["roleName"]
+        }]
       });
       if (result.length === 0) throw new Error("No se encontraron usuarios");
       res.send({ success: true, message: "Usuarios encontrados", result });
@@ -36,7 +41,11 @@ class UserController {
         where: {
           id:id
         },
-        attributes:["id", "userName", "nombre", "apellido", "dni"]
+        attributes:["id", "userName", "nombre", "apellido", "dni"],
+        include : [{
+          model:Role,
+          attributes:["roleName"]
+        }]
 
       });
       if (!result) throw new Error("No se encontro el  usuario");
@@ -49,8 +58,8 @@ class UserController {
   updateUserById = async (req, res, next) => {
     try {
         const {id} = req.params;
-        const {userName,nombre, dni, apellido, password} = req.body;
-        const result = await Usuario.update({userName,nombre, dni, apellido, password},{
+        const {userName,nombre, dni, apellido, password, role} = req.body;
+        const result = await Usuario.update({userName,nombre, dni, apellido, password, role},{
             where:{
                 id:id
             }
@@ -76,6 +85,27 @@ class UserController {
         res.status(400).send({success:false, result:error.message})
     }
   };
+
+  login = async (req, res, next) =>{
+    try {
+      const {userName, password} = req.body
+      const result = await Usuario.findOne({
+        where: {userName}
+      });
+
+      if(!result) throw new Error("Credenciales incorrectas")
+
+      const compare = await result.validatePassword(password, result.password)
+
+      if(!compare) throw new Error("Credenciales incorrectas")
+
+      res
+        .status(200)
+        .send({ success: true, message: "Usuario logueado con exito" });
+    } catch (error) {
+      res.status(400).send({success:false, result:error.message})
+    }
+  }
 }
 
 export default UserController;
