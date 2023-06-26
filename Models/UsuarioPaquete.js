@@ -10,14 +10,14 @@ UsuarioPaquete.init({
         type: DT.INTEGER,
         references: {
           model: Usuario, 
-          key: 'usuarioId'
+          key: 'id'
         }
       },
       paqueteId: {
         type: DT.INTEGER,
         references: {
           model: Paquete,
-          key: 'paqueteId',
+          key: 'id',
         }
       }
 

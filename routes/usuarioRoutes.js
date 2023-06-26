@@ -9,6 +9,8 @@ router.get("/", userController.getAllUsers)
 
 router.get("/:id", userController.getUserById)
 
+router.post("/login", userController.login)
+
 router.post("/", userController.createUser)
 
 router.put("/:id", userController.updateUserById)
