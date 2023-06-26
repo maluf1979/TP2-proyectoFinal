@@ -1,4 +1,4 @@
-import { where } from "sequelize";
+
 import { Usuario, Role } from "../Models/index.js";
 
 class UserController {
