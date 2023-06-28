@@ -1,7 +1,6 @@
 import express from "express"
 import paqueteRouter from "./paqueteRoutes.js"
 import usuarioRouter from "./usuarioRoutes.js"
-//import UsuarioPaqueteRouter from "./UsuarioPaqueteRoutes.js"
 import roleRouter from "./roleRoutes.js"
 
 

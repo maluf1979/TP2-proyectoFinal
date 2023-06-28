@@ -102,7 +102,8 @@ class UserController {
 
       const payload = {
         id: result.id,
-        userName: result.userName
+        userName: result.userName,
+        roleId: result.roleId
       }
       const token = generarToken(payload)
       res.cookie("token", token);

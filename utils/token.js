@@ -1,16 +1,16 @@
 import "dotenv/config.js";
-import JWT from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 const secret = process.env.JWT_SECRET;
 
 export const generarToken = (payload) => {
-    const token = JWT.sign( { payload }  , secret,{
+    const token = jwt.sign( { payload }  , secret,{
         expiresIn:'1h'
     })
     return token
 }
 
 export const verificarToken = (token) => {
-    return JWT.verify(token, secret)
+    return jwt.verify(token, secret)
 }
 

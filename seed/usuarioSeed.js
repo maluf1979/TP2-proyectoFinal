@@ -8,7 +8,6 @@ const usuarioSeed = async () => {
              nombre:'juan',
              apellido:'ramirez',
              dni: 30000000,
-             //salt:'',
              roleId: 1
              }     
             );
