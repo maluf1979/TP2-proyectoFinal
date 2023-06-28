@@ -45,7 +45,8 @@ Usuario.init({
     },
     roleId:{
         type: DT.INTEGER,
-        defaultValue:2
+        defaultValue:2,
+        allowNull:true
     }
     
 },{

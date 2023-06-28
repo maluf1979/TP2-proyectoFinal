@@ -1,5 +1,8 @@
 
 import { Usuario, Role } from "../Models/index.js";
+import { generarToken, verificarToken } from '../utils/token.js'
+
+
 
 class UserController {
   constructor() {}
@@ -94,10 +97,15 @@ class UserController {
       });
 
       if(!result) throw new Error("Credenciales incorrectas")
-
       const compare = await result.validatePassword(password, result.password)
-
       if(!compare) throw new Error("Credenciales incorrectas")
+
+      const payload = {
+        id: result.id,
+        userName: result.userName
+      }
+      const token = generarToken(payload)
+      res.cookie("token", token);
 
       res
         .status(200)
@@ -105,6 +113,20 @@ class UserController {
     } catch (error) {
       res.status(400).send({success:false, result:error.message})
     }
+  }
+
+  me = async (req, res, next) =>{
+    const {user} = req
+    res
+    .status(200)
+    .send({ success: true, message: "Usuario", user });
+  }
+
+  logout = async (req, res, next) => {
+    res.cookie("token" , "")
+    res
+        .status(200)
+        .send({ success: true, message: "Usuario deslogueado" });
   }
 }
 
